@@ -44,27 +44,27 @@ In addition, a Naive Bayes approach is implemented as a baseline model. The TF-I
 
 **Total Number of Documents**: The code calculates the total number of unique documents by extracting document_number from the JSON file.
 
-![screenshot for Total Number of Documents]({16E03167-AC42-49FE-9148-51024E69FDA9}.png)
+![screenshot for Total Number of Documents](images/total_num_of_docs.png)
 
 **Number of Documents per Category/Agency**: Dropped rows with missing abstracts or agencies. Extracted agency names into a separate column. Counted the number of documents associated with each agency. The top 10 agencies with the highest document counts are displayed.
 
-![Screenshot for Number of Documents per Category/Agency]({0E188D64-E3B4-48D7-A364-DC7C9254EF32}.png)
+![Screenshot for Number of Documents per Category/Agency](images/num_of_docs_per_category_agency.png)
 
 **Number of Agencies per Document**: Calculated how many agencies are associated with each document. Identified the document with the maximum number of agencies and printed its details.
 
-![Screenshot for Number of Agencies per Document](num_of_agencies_per_doc.png)
+![Screenshot for Number of Agencies per Document](images/num_of_agencies_per_doc.png)
 
 **Average Word Length in Abstracts**: Concatenated all abstracts, defined a function 'letterCounter' to count word lengths and calculated the mean word length. The average word length across the dataset indicates the complexity of the vocabulary used.
 
-![Screenshot for Average Word Length in Abstracts](average_word_in_abstracts.png)
+![Screenshot for Average Word Length in Abstracts](images/average_word_in_abstracts.png)
 
 **Average Word Length per Document**: Calculated the average word length for each document's abstract. Sorted documents by average word length.
 
-![Screenshot for Average Word Length per Document](average_word_len_per_doc.png)
+![Screenshot for Average Word Length per Document](images/average_word_len_per_doc.png)
 
 **Agency Collaboration**: Identified documents involving multiple agencies. Printed the top 10 most common agency pairs in collaborations.
 
-![Screenshot for Agency Collaboration](num_docs_with_multiple_agencies.png)
+![Screenshot for Agency Collaboration](images/num_docs_with_multiple_agencies.png)
 
 ## Preprocessing Steps
 
@@ -83,23 +83,23 @@ Cleaned and preprocessed the abstract column for downstream tasks like vectoriza
 
 The StringLookup layer is used to preprocess multi-label data by converting text labels into a multi-hot encoded format. The lookup.adapt() method learns the vocabulary from the dataset, and the invert_multi_hot() function decodes the multi-hot labels back into their original text form for interpretation.
 
-![Screenhsot for Multi-label Binarization](/images/7.png)
+![Screenhsot for Multi-label Binarization](images/multi_label_binarization.png)
 
 ## Datasets preparation
 
 The function 'make_dataset' prepares datasets for training, validation, and testing by encoding text and labels into tensors. It processes the abstract as input and creates multi-hot and one-hot encoded labels for 'agency_names' and 'type'. The data is shuffled for training and batched with a size of 32.
 
-![Screenshot for Datasets preparation](/images/8.png)
+![Screenshot for Datasets preparation](images/dataset_prep.png)
 
 **Inspecting a Batch of Data**: This code extracts a batch from the training dataset and inspects the first 10 examples. It decodes the multi-hot encoded agency_names back into text and determines the type (rule, notice, or proposed rule) by interpreting the one-hot encoded type labels. The abstract, agency names, and type are printed for each example.
 
-![Screenshot for Inspecting a batch](/images/9.png)
+![Screenshot for Inspecting a batch](images/inspecting_a_batch_of_data.png)
 
 ## Text Vectorization
 
 The vocabulary is prepared from the training abstracts, and a TextVectorization layer is configured to convert text into TF-IDF representations with bigrams. The vectorizer is adapted to the training data and then applied to the train, validation, and test datasets, enabling efficient preprocessing with parallelism and prefetching.
 
-![Screenshot for Text vectorization](/images/10.png)
+![Screenshot for Text vectorization](images/text_vector_neural.png)
 
 ## Model Fitting
 
@@ -130,7 +130,7 @@ high-dimensional data.
 
 ### Model Summary
 
-![Screenshot for Model summary](images/11.png)
+![Screenshot for Model summary](images/neural_model_summary.png)
 
 **Summary Description**:
 
@@ -219,15 +219,15 @@ The F1 score provides a balance between precision and recall.
 
 **Neural Netwok**
 
-![Screenshot for Predictions on test set](image-2.png)
+![Screenshot for Predictions on test set](images/neural_predictions_on_test.png)
 
-![Screenshot for predictions on unseen data](image-3.png)
+![Screenshot for predictions on unseen data](images/neural_prediction_on_unseen_data.png)
 
 **Naive Bayes**
 
-![Screenshot for Predictions on test set](image-5.png)
+![Screenshot for Predictions on test set](images/naive_prediction_on_test.png)
 
-![Screenshot for predictions on unseen data](image-4.png)
+![Screenshot for predictions on unseen data](images/naive_prediction_on_unseen_data.png)
 
 ### Multi label classification using Naive Bayes
 
