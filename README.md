@@ -158,9 +158,12 @@ From the test set, a validation set was created by sampling 50% of the test set.
 **Naive Bayes Implementation**:
 
 - **Input**: TF-IDF Vectorizer with a maximum of 5000 features and bi-grams used to convert abstracts into feature vectors.
+  ![Screenshot for tf-idf vectorizer](images/tf_idf.png)
 - **Preparing Labels**:
   Agency labels are converted into numerical format using a lookup table on ragged tensors, while type labels are one-hot encoded using pandas 'get_dummies' method for multi-label classification.
-- **Classifier**: Multinomial Naive Bayes wrapped in a MultiOutputClassifier for multi-label prediction.
+  ![Screenshot for labels](images/preparing_labels.png)
+- **Classifier**: Multinomial Naive Bayes wrapped in a MultiOutputClassifier for multi-label prediction and OneVsRestClassifier for multi-class prediction.
+  ![Screenshot for classifiers](images/classifiers.png)
 
 ## Validation/Metrics
 
