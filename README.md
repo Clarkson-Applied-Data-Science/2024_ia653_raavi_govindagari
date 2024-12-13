@@ -13,8 +13,7 @@ This project focuses on using Natural Language Processing (NLP) techniques to an
 ## Project Goals
 
 **Multilabel Classification**  
-   Develop a multi-label classification model for that predicts multiple agency names and document types (Rule, Proposed Rule, or Notice) based on abstract text using Naive Bayes and Neuarl Networks
-
+ Develop a multi-label classification model for that predicts multiple agency names and document types (Rule, Proposed Rule, or Notice) based on abstract text using Naive Bayes and Neuarl Networks
 
 # Dataset Details
 
@@ -112,18 +111,21 @@ From the test set, a validation set was created by sampling 50% of the test set.
 
 ### Model Selection
 
-**Selected Models**: 
+**Selected Models**:
+
 - Two models were implemented to solve this problem
 - A multi-label classification neural network to predict agency names (multi-label task) and document type (multi-class task).
 - A Naive Bayes classifier to compare performance against the neural network.
 
-**Reason for Model Choice**: 
+**Reason for Model Choice**:
+
 - The task involves text data with multi-label and multi-class outputs, making neural networks well-suited due to their capacity for modeling complex relationships and handling.
 
 - Naive Bayes was implemented as a simpler, baseline approach to evaluate whether its probabilistic modeling could perform competitively for the given dataset.
-high-dimensional data.
+  high-dimensional data.
 
-**Deep Learning Models**: 
+**Deep Learning Models**:
+
 - Neural networks and text vectorization layers were employed to leverage semantic relationships and TF-IDF representations for enhanced accuracy.
 
 - The Naive Bayes model uses TF-IDF representations to classify the data
@@ -156,9 +158,9 @@ high-dimensional data.
 **Naive Bayes Implementation**:
 
 - **Input**: TF-IDF Vectorizer with a maximum of 5000 features and bi-grams used to convert abstracts into feature vectors.
-- Classifier: Multinomial Naive Bayes wrapped in a MultiOutputClassifier for multi-label prediction.
-
-
+- **Preparing Labels**:
+  Agency labels are converted into numerical format using a lookup table on ragged tensors, while type labels are one-hot encoded using pandas 'get_dummies' method for multi-label classification.
+- **Classifier**: Multinomial Naive Bayes wrapped in a MultiOutputClassifier for multi-label prediction.
 
 ## Validation/Metrics
 
@@ -173,51 +175,55 @@ Recall reflects how many actual positive labels the model correctly identified.
 **F1 Score:**
 The F1 score provides a balance between precision and recall.
 
-### Training and validation Metrics 
+### Training and validation Metrics
 
 **Naive Bayes**
 
-- Agency prediction Precision on the validation set: 90.27%
-- Agency prediction Recall on the validation set: 69.99%
-- Agency prediction F1 Score on the validation set: 78.85%
-- Type prediction Precision on the validation set: 73.01%
-- Type prediction Recall on the validation set: 78.49%
-- Type prediction F1 Score on the validation set: 75.49%
+- Agency prediction Precision on the validation set: 90.78%
+- Agency prediction Recall on the validation set: 70.22%
+- Agency prediction F1 Score on the validation set: 79.19%
+- Type prediction Precision on the validation set: 76.14%
+- Type prediction Recall on the validation set: 76.29%
+- Type prediction F1 Score on the validation set: 76.01%
 
 **Neural Network**
 
-- Agency prediction accuracy on the train set: 0.9998420476913452
-- Agency prediction accuracy on the validation set: 0.9990457892417908
-- Type prediction accuracy on the train set: 0.9970310926437378
-- Type prediction accuracy on the validation set: 0.9553072452545166
+- Agency prediction accuracy on the train set: 0.9999136924743652
+- Agency prediction accuracy on the validation set: 0.9989951848983765
+- Type prediction accuracy on the train set: 0.9975886940956116
+- Type prediction accuracy on the validation set: 0.9724518060684204
 
 ### Test Metrics
 
 **Naive Bayes**
 
-- Agency prediction Precision on the test set: 94.31%
-- Agency prediction Recall on the test set: 70.48%
-- Agency prediction F1 Score on the test set: 80.67%
-- Type prediction Precision on the test set: 75.66%
-- Type prediction Recall on the test set: 78.15%
-- Type prediction F1 Score on the test set: 76.67%
+- Agency prediction Precision on the test set: 87.07%
+- Agency prediction Recall on the test set: 70.2%
+- Agency prediction F1 Score on the test set: 77.73%
+- Type prediction Precision on the test set: 74.01%
+- Type prediction Recall on the test set: 80.12%
+- Type prediction F1 Score on the test set: 76.71%
 
 **Neural Network**
 
-- Agency prediction accuracy on the test set: 99.83%
-- Agency prediction Precision: 0.9825
-- Agency prediction Recall: 0.8007
-- Agency prediction F1 Score: 0.8823
-- Type prediction accuracy on the test set: 96.51%
-- Type prediction Precision: 0.9453
-- Type prediction Recall: 0.8901
-- Type prediction F1 Score: 0.9159
+- Agency prediction accuracy on the test set: 99.9%
+- Agency prediction Precision: 0.9856
+- Agency prediction Recall: 0.8846
+- Agency prediction F1 Score: 0.9324
+- Type prediction accuracy on the test set: 97.25%
+- Type prediction Precision: 0.9292
+- Type prediction Recall: 0.9270
+- Type prediction F1 Score: 0.9266
+
+### Metrics Comparison Between Naive Bayes and Neural Network
+
+![Screenshot for metrics comparsion](images/metrics_comparsion.png)
 
 ## Predictions
 
 ### Examples on test set & unseen data
 
-**Neural Netwok**
+**Neural Networks**
 
 - Examples on test set
 
@@ -237,25 +243,7 @@ The F1 score provides a balance between precision and recall.
 
 ![Screenshot for predictions on unseen data](images/naive_prediction_on_unseen_data.png)
 
-### Multi label classification using Naive Bayes
-
-- Text verification using tf-idf
-- Preparing labels ( agency labels & type labsls)
-- Naive Bayes classifier for agency names & type
-- Prediction on validation test
-- Model evaluation on agencies & type
-- Prediction on test set
-- Prediction on unseen data
-
-**Input and Target Variables:**
-    - **Input:** Text data (abstracts).
-    - **Targets:**
-        - `agency_names`: Multi-label, indicating the agencies associated with the text.
-        - `type`: Multi-class, classifying the regulation type (rule, notice, proposed rule).
-
-**Model Selection (Naive Bayes):** Multinomial Naive Bayes is selected for its simplicity and efficiency for text classification.
-
-**Other Model Considerations:**  The code compares Naive Bayes with a neural network model. 
+**Other Model Considerations:** The code implements both Naive Bayes and neural network models. Additionally, transformer-based models can be considered for improved performance on text data.
 
 ## Going Further
 
