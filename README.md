@@ -219,13 +219,21 @@ The F1 score provides a balance between precision and recall.
 
 **Neural Netwok**
 
+- Examples on test set
+
 ![Screenshot for Predictions on test set](images/neural_predictions_on_test.png)
+
+- Examples on unseen data
 
 ![Screenshot for predictions on unseen data](images/neural_prediction_on_unseen_data.png)
 
 **Naive Bayes**
 
+- Examples on test set
+
 ![Screenshot for Predictions on test set](images/naive_prediction_on_test.png)
+
+- Examples on unseen data
 
 ![Screenshot for predictions on unseen data](images/naive_prediction_on_unseen_data.png)
 
